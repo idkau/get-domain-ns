@@ -1,11 +1,11 @@
 #!/bin/bash
 #
-#For usage on server CLI example: ./get-domain-ns.sh v1.pau-2170.vps server
+#For usage on server CLI example: ./get-domain-ns.sh v1.pau.vps server
 #Put domains in a list of one column and name the file "domainlist" if using locally
 #Send output to CSV file
 #Get the domainlist off the server with cat /etc/userdomains | cut -d :  -f 1
-#Example:    bash get-domains-ns.sh >> EXC-269-output.csv
-#Example with stdout: bash get-domain-ns.sh | tee -a EXC-269-output.csv
+#Example:    bash get-domains-ns.sh >> EXC-output.csv
+#Example with stdout: bash get-domain-ns.sh | tee -a EXC-output.csv
 #No output after domain means the domain is not registered.
 #
 #by Jason Pearl
@@ -156,7 +156,7 @@ done
 
 #Send the csv file to AWS for processing and storage. workmail addy > SES > S3 > lambda > S3
 
-echo "$vpsId" | mail -s "$vpsId" -a $vpsId.csv dns-export@tpp-aws-automation.awsapps.com
+echo "$vpsId" | mail -s "$vpsId" -a $vpsId.csv yourownemail@aws-automation.awsapps.com
 
 echo -e "Mail sent...\n"
 
